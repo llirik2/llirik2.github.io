@@ -1,0 +1,65 @@
+[
+  {
+    "id": "proj-1782317803067",
+    "title": {
+      "ru": "Speed Craft",
+      "en": "Speed Craft"
+    },
+    "description": {
+      "ru": "Новый режим в майнкрафте который проверяет вашу скорость крафта предметов!",
+      "en": "A new mode in Minecraft that tests your crafting speed"
+    },
+    "tags": [
+      "own"
+    ],
+    "price": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "date": "2026-06-24",
+    "cover": "https://imgfy.ru/ib/saf81LG4tx4D014_1782317816.webp",
+    "link": "#"
+  },
+  {
+    "id": "proj-1782317471345",
+    "title": {
+      "ru": "The Invisible Cheater",
+      "en": "The Invisible Cheater"
+    },
+    "description": {
+      "ru": "В мире появился новый босс.",
+      "en": "There's a new boss in the world"
+    },
+    "tags": [
+      "own"
+    ],
+    "price": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "date": "2026-06-24",
+    "cover": "https://cdn.modrinth.com/data/MZ21pFnS/a8f58169f5df5767283b790c3285fa4c7ffe5af2_96.webp",
+    "link": "#"
+  },
+  {
+    "id": "proj-1782317376855",
+    "title": {
+      "ru": "Rolling Sniffer",
+      "en": "Rolling Sniffer"
+    },
+    "description": {
+      "ru": "Этот пакет данных предоставляет возможности для управления снифферами с помощью факела в качестве транспортного средства.",
+      "en": "This datapack provides functionality for controlling sniffers using the torchlight as a vehicle."
+    },
+    "tags": [
+      "own"
+    ],
+    "price": {
+      "amount": 0,
+      "currency": "RUB"
+    },
+    "date": "2026-06-24",
+    "cover": "https://cdn.modrinth.com/data/iR5e4XmH/67b9697639916f5fc295ae97da14b339cff9ab12_96.webp",
+    "link": "#"
+  }
+]
