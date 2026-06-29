@@ -19,6 +19,7 @@
     "date": "2026-06-24",
     "cover": "/Site/assets/preview_map_speed_craft.webp",
     "link": "#"
+    "category": { "ru": "Карта", "en": "Map" },
   },
   {
     "id": "proj-1782317471345",
@@ -40,6 +41,7 @@
     "date": "2026-06-24",
     "cover": "/Site/assets/preview_datapack_DTM.webp",
     "link": "#"
+    "category": { "ru": "Датапак", "en": "Datapack" },
   },
   {
     "id": "proj-1782317376855",
@@ -61,5 +63,6 @@
     "date": "2026-06-24",
     "cover": "/Site/assets/preview_datapack_RS.webp",
     "link": "#"
+    "category": { "ru": "Датапак", "en": "Datapack" },
   }
 ]
