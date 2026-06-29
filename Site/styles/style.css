@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/minecraftia');
+
 :root{
   --bg:#020602;
   --surface:#0d1310;
@@ -37,7 +39,20 @@ body{
 .hero-inner{padding:40px 0;position:relative;z-index:1}
 .hero{position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 40% 20%, rgba(0,255,136,0.14), transparent 18%),radial-gradient(circle at 80% 10%, rgba(0,255,136,0.08), transparent 16%);pointer-events:none}
-.hero h1{font-size:clamp(3rem,8vw,6rem);margin:0 0 18px;letter-spacing:0.3rem;line-height:0.95;background:linear-gradient(90deg,#7affe3,#00c46b 45%,#7affe3);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 18px 70px rgba(0,196,107,0.12)}
+.hero h1 {
+  font-family: 'Minecraftia', 'Inter', sans-serif; /* Подключаем майнкрафт-шрифт */
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  margin: 0 0 14px;
+  white-space: nowrap;
+  letter-spacing: 0.3rem; /* Пиксельные шрифты круто смотрятся с небольшим зазором букв */
+  
+  /* Твой текущий градиент на тексте */
+  background: linear-gradient(90deg,#7affe3,#00c46b 45%,#7affe3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 18px 70px rgba(0,196,107,0.12);
+}
 .subtitle{font-size:1.25rem;color:var(--muted);max-width:780px;line-height:1.85}
 .about, .portfolio, .contacts{padding:70px 0}
 .about p{white-space:pre-line;line-height:1.95;max-width:900px;color:var(--muted);margin-top:18px}
@@ -95,77 +110,78 @@ body{
   transition: transform 220ms ease;
 }
 
-.hero-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Текст прижмется влево, скин — вправо */
-  gap: 20px;
-  position: relative;
-  width: 100%;
-}
-
-/* Ограничиваем левую колонку с текстом, чтобы она не наезжала на скина */
-/* Базовые настройки секции */
+/* Главная секция первого экрана */
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 60px 0; /* Комфортные отступы вместо жесткой высоты */
+  padding: 80px 0 40px; /* Увеличили верхний отступ, чтобы сбалансировать шапку */
 }
 
-/* Контейнер флексов — теперь он чётко зажат внутри .container */
+/* Контейнер флексов, зажатый строго внутри сетки .container */
 .hero-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Расталкивает текст влево, аватарку вправо */
-  gap: 40px;
+  justify-content: space-between; /* Текст влево, аватарка вправо */
+  gap: 20px; /* Уменьшаем минимальный зазор, чтобы элементы не выталкивали друг друга */
   position: relative;
   z-index: 10;
   width: 100%;
 }
 
-/* Ограничиваем текст, чтобы он не уплывал */
+/* Текстовый блок: даем ему больше пространства */
 .hero-text {
-  flex: 1;
-  max-width: 500px;
+  flex: 1.3; /* Занимает чуть больше места, чтобы никнейм не переносился */
+  max-width: 650px;
   text-align: left;
 }
 
-/* Блок аватарки, который встанет точно в нужную зону */
+/* Заголовок теперь не будет ломаться на ровном месте */
+.hero h1 {
+  font-size: clamp(2.8rem, 5vw, 4.5rem); /* Слегка оптимизировали размер для баланса */
+  margin: 0 0 14px;
+  white-space: nowrap; /* Запрещаем перенос букв никнейма */
+}
+
+/* Контейнер для скина бобра в правой части */
 .hero-avatar-wrap {
-  flex: 1;
-  max-width: 280px; /* Размер бобра на десктопах */
+  flex: 0.9; /* Занимает чуть меньше пространства, аккуратно вставая в угол */
+  max-width: 320px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end; /* Сдвигаем картинку ближе к центру, подальше от правого края */
   position: relative;
 }
 
-/* Плавная маска затухания прямо на изображении */
+/* Картинка скина с мягким растворением в кубах */
 .hero-avatar {
   width: 100%;
+  max-width: 260px; /* Ограничиваем физический размер картинки */
   height: auto;
   display: block;
   object-fit: contain;
   z-index: 12;
   
-  /* Верх картинки — видимый, низ плавно исчезает, обнажая кубы фона */
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%);
+  /* Идеальный градиент: верх полностью виден, с 60% начинается мягкое растворение */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%);
 }
 
-/* Адаптив под мобильные устройства */
-@media (max-width: 860px) {
+/* Адаптивность для мобильных телефонов и планшетов */
+@media (max-width: 900px) {
   .hero-inner {
-    flex-direction: column;
+    flex-direction: column; /* На маленьких экранах выстраиваем в один столбик */
     text-align: center;
-    gap: 30px;
+    gap: 40px;
   }
   .hero-text {
     text-align: center;
     margin: 0 auto;
   }
+  .hero h1 {
+    white-space: normal; /* На телефонах перенос имени разрешен, если экран совсем крошечный */
+  }
   .hero-avatar-wrap {
-    max-width: 200px; /* Делаем чуть меньше на телефонах */
+    max-width: 220px;
+    justify-content: center;
     margin: 0 auto;
   }
 }
