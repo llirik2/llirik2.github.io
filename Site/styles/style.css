@@ -60,16 +60,49 @@ body{
   height: 100%; 
 }
 
+/* Обязательно добавляем position: relative для корректного позиционирования пометки */
 .card .cover {
-  /* Задаем идеальное соотношение сторон 16:9 для твоих картинок 1920x1080 */
-  aspect-ratio: 16 / 7; 
+  position: relative; 
+  aspect-ratio: 16 / 7;
   width: 100%;
-  /* Убираем фиксированную высоту 120px, теперь она считается автоматически */
-  height: auto; 
+  height: auto;
   border-radius: 8px;
   overflow: hidden;
   background: #060606;
   margin-bottom: 6px;
+}
+
+/* Стили для новой кастомной зеленой пометки с градиентом */
+.custom-project-badge {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 5;
+  
+  /* Зеленый неоновый градиент в стиле вашей темы */
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.9) 0%, rgba(0, 196, 107, 0.9) 100%);
+  /* Цвет текста темный, чтобы он хорошо читался на ярко-зеленом фоне */
+  color: #00110a; 
+  
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  
+  padding: 5px 12px;
+  border-radius: 6px;
+  
+  /* Легкое размытие заднего плана и тень для сочности */
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0, 196, 107, 0.35);
+  pointer-events: none; /* Чтобы плашка не мешала кликать по карточке */
+  
+  transition: transform 220ms ease;
+}
+
+/* Дополнительный минорный эффект при наведении на карточку */
+.card:hover .custom-project-badge {
+  transform: scale(1.05);
 }
 
 .card .cover img {
