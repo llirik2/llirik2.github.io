@@ -2,8 +2,8 @@
   {
     "id": "proj-1782317803067",
     "title": {
-      "ru": "Speed Craft [ КАРТА ]",
-      "en": "Speed Craft [ MAP ]"
+      "ru": "Speed Craft",
+      "en": "Speed Craft"
     },
     "description": {
       "ru": "Новый режим в майнкрафте который проверяет вашу скорость крафта предметов!",
@@ -23,12 +23,12 @@
   {
     "id": "proj-1782317471345",
     "title": {
-      "ru": "The Invisible Cheater [ ДАТАПАК ]",
-      "en": "The Invisible Cheater [ DATAPACK ]"
+      "ru": "Damage To Mini",
+      "en": "Damage To Mini"
     },
     "description": {
-      "ru": "В мире появился новый босс.",
-      "en": "There's a new boss in the world"
+      "ru": "Позволяет игре уменьшать игрока при получении урона.",
+      "en": "Allows the game to become small when taking damage"
     },
     "tags": [
       "own"
@@ -38,17 +38,17 @@
       "currency": "RUB"
     },
     "date": "2026-06-24",
-    "cover": "https://cdn.modrinth.com/data/MZ21pFnS/a8f58169f5df5767283b790c3285fa4c7ffe5af2_96.webp",
+    "cover": "/Site/assets/preview_datapack_DTM.png",
     "link": "#"
   },
   {
     "id": "proj-1782317376855",
     "title": {
-      "ru": "Rolling Sniffer [ ДАТАПАК ]",
-      "en": "Rolling Sniffer [ DATAPACK ]"
+      "ru": "Rolling Sniffer",
+      "en": "Rolling Sniffer"
     },
     "description": {
-      "ru": "Этот пакет данных предоставляет возможности для управления снифферами с помощью факела в качестве транспортного средства.",
+      "ru": "Этот пакет данных предоставляет возможности для управления нюхачами с помощью факела в качестве транспортного средства.",
       "en": "This datapack provides functionality for controlling sniffers using the torchlight as a vehicle."
     },
     "tags": [
@@ -59,7 +59,7 @@
       "currency": "RUB"
     },
     "date": "2026-06-24",
-    "cover": "https://cdn.modrinth.com/data/iR5e4XmH/67b9697639916f5fc295ae97da14b339cff9ab12_96.webp",
+    "cover": "/Site/assets/preview_datapack_RS.png",
     "link": "#"
   }
 ]
