@@ -48,9 +48,38 @@ body{
 .filter{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);color:var(--text);padding:10px 16px;border-radius:999px;cursor:pointer;transition:all 220ms ease;font-weight:600}
 .filter.active{background:linear-gradient(90deg, rgba(0,255,136,0.18), rgba(0,196,107,0.14));border-color:var(--accent)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:30px}
-.card{display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:16px;border-radius:12px;min-height:180px}
-.card .cover{height:120px;border-radius:8px;overflow:hidden;background:#060606;margin-bottom:6px}
-.card .cover img{width:100%;height:100%;object-fit:cover;display:block}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 12px;
+  /* Убираем min-height: 180px, чтобы карточка подстраивалась под контент */
+  height: 100%; 
+}
+
+.card .cover {
+  /* Задаем идеальное соотношение сторон 16:9 для твоих картинок 1920x1080 */
+  aspect-ratio: 16 / 9; 
+  width: 100%;
+  /* Убираем фиксированную высоту 120px, теперь она считается автоматически */
+  height: auto; 
+  border-radius: 8px;
+  overflow: hidden;
+  background: #060606;
+  margin-bottom: 6px;
+}
+
+.card .cover img {
+  width: 100%;
+  height: 100%;
+  /* Картинка заполнит область без деформации (лишнее аккуратно обрежется) */
+  object-fit: cover; 
+  object-position: center;
+  display: block;
+}
 .card .title{font-weight:700;color:var(--accent);font-size:1.05rem}
 .badge{display:inline-block;padding:6px 10px;border-radius:999px;font-size:0.85rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);margin-right:8px}
 .price{font-weight:800;margin-top:6px;color:var(--text)}
