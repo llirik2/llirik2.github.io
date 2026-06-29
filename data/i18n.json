@@ -1,0 +1,26 @@
+{
+  "ru":{
+    "title_name":"bober4uk_",
+    "subtitle":"Создатель датапаков и карт для Minecraft",
+    "about_title":"Обо мне",
+    "about_text":"Я разработчик датапаков (.mcfunction) для Minecraft с 3-летним опытом работы.\nДва года я плотно занимался механизмами на командных блоках, а последний год полностью перешел на оптимизированный код и создание датапаков любой сложности. Отлично знаком с современными фишками движка игры (макросы, работа со storage, динамические массивы и кастомные триггеры). Что я могу реализовать:\n\nУникальные мини-игры и карты на заказ (включая сложные системы очередей, лобби и подсчет статистики).\nКастомные механики, крафты и датапаки для серверов.\nОптимизация старого кода и исправление багов.\n\nСейчас я активно нарабатываю базу отзывов и портфолио на этой площадке, поэтому предлагаю свои услуги по очень комфортным, сниженным ценам. При этом к каждому проекту я отношусь максимально ответственно: весь код проходит жесткий краш-тест на баги перед сдачей.Готов обсудить твою идею и превратить её в готовый работающий код.",
+    "portfolio_title":"Портфолио",
+    "filter_all":"Все",
+    "filter_order":"Заказ",
+    "filter_own":"Собственная инициатива",
+    "contacts_title": "Контакты",
+    "cta_button": "Связаться"
+  },
+  "en":{
+    "title_name":"bober4uk_",
+    "subtitle":"Creator of datapacks and maps for Minecraft",
+    "about_title":"About",
+    "about_text":"I am a developer of datapacks (.mcfunction) for Minecraft with 3 years of experience.\nFor two years, I have been working closely with command block mechanisms, and in the last year, I have completely switched to optimized code and the creation of datapacks of any complexity. I am well-versed in the modern features of the game engine (macros, storage, dynamic arrays, and custom triggers). What I can implement:\n\nUnique mini-games and custom maps (including complex queue systems, lobbies, and statistics).\nCustom mechanics, crafts, and datapacks for servers.\nOptimization of old code and bug fixing.\n\nI am currently actively building a feedback base and portfolio on this platform, so I offer my services at very competitive and reduced prices. However, I take every project with utmost responsibility, and all code undergoes rigorous bug testing before delivery. I am ready to discuss your idea and turn it into a functional code",
+    "portfolio_title":"Portfolio",
+    "filter_all":"All",
+    "filter_order":"Order",
+    "filter_own":"Own Project",
+    "contacts_title": "Contacts",
+    "cta_button": "Contact Me"
+  }
+}
