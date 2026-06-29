@@ -99,11 +99,14 @@
     // Если ключ подошел — создаем панель и настраиваем кнопку
     const panel = createPanel();
     const btn = document.getElementById('open-admin');
-    
-    if (btn) {
+
+    if (btn && panel) { // Проверяем, что и кнопка, и панель успешно создались
       btn.style.display = 'block'; // Показываем кнопку только тебе
-      btn.addEventListener('click', () => { 
-        panel.style.display = panel.style.display === 'none' ? 'block' : 'none'; 
+      
+      btn.addEventListener('click', () => {
+        // Безопасное переключение видимости напрямую через константу panel
+        const isHidden = panel.style.display === 'none' || panel.style.display === '';
+        panel.style.display = isHidden ? 'block' : 'none';
       });
     }
   });
