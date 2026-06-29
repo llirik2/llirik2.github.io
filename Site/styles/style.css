@@ -63,7 +63,7 @@ body{
 /* Обязательно добавляем position: relative для корректного позиционирования пометки */
 /* Возвращаем обложку в дефолтный вид */
 .card .cover {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 7;
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -94,6 +94,64 @@ body{
   box-shadow: 0 4px 12px rgba(0, 196, 107, 0.2);
   transition: transform 220ms ease;
 }
+
+/* Контейнер для центрирования и управления размером */
+/* Делаем главный блок двухколонным */
+.hero-inner {
+  padding: 40px 0;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Текст уйдет влево, скин — в твою зеленую зону справа */
+  gap: 40px;
+}
+
+/* Стили для текстового блока слева */
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+  text-align: left; /* Выравнивание текста по левому краю */
+}
+
+/* Контейнер для скина в правой части */
+.hero-avatar-wrap {
+  flex: 1;
+  max-width: 320px; /* Скин справа можно сделать чуть покрупнее и посочнее */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 5; /* Чтобы трехмерные кубы красиво пролетали за бобром */
+}
+
+/* Мягкое растворение самого скина в темноте */
+.hero-avatar {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 95%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%);
+}
+
+/* Адаптив: на мобилках выстраиваем всё обратно в один столбик */
+@media (max-width: 860px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+  .hero-text {
+    text-align: center;
+  }
+  .hero-avatar-wrap {
+    max-width: 220px; /* На смартфонах делаем скин чуть компактнее */
+    margin: 0 auto;
+  }
+}
+
+/* Дополнительный чёрный градиент-подложка (синяя зона на наброске) */
 
 /* Легкий интерактив при наведении на саму карточку */
 .card:hover .custom-project-badge {
