@@ -1,6 +1,12 @@
 (function(){
   function createPanel(){
     const root = document.getElementById('admin-root');
+    // ЗАЩИТА: Если забыл добавить <div id="admin-root"></div> в index.html, скрипт не упадет
+    if (!root) {
+      console.warn("Контейнер #admin-root не найден на странице!");
+      return null;
+    }
+
     const panel = document.createElement('div'); panel.className='admin-panel'; panel.style.display='none';
     panel.innerHTML = `
       <h3>Генератор проекта</h3>
@@ -35,6 +41,7 @@
     `;
     root.appendChild(panel);
 
+    // ... тут остаются твои старые обработчики событий (ap_add, ap_export, ap_close) ...
     document.getElementById('ap_add').addEventListener('click',()=>{
       const obj = {
         id: 'proj-'+Date.now(),
@@ -58,9 +65,31 @@
     return panel;
   }
 
-  document.addEventListener('DOMContentLoaded',()=>{
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Придумай свой секретный ключ (замени строку ниже на что-то уникальное)
+    const SECRET_KEY = "mySuperSecretPassword123"; 
+
+    // 2. Проверяем, есть ли в ссылке URL параметр ?admin=наш_ключ
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdmin = urlParams.get('admin') === SECRET_KEY;
+
+    // Если ключ не совпадает, полностью прерываем работу скрипта
+    if (!isAdmin) {
+      // На всякий случай скрываем или удаляем кнопку вызова админки, если она была в HTML
+      const btn = document.getElementById('open-admin');
+      if (btn) btn.style.display = 'none';
+      return; 
+    }
+
+    // Если ключ подошел — создаем панель и настраиваем кнопку
     const panel = createPanel();
     const btn = document.getElementById('open-admin');
-    btn.addEventListener('click',()=>{ panel.style.display = panel.style.display==='none'?'block':'none'; });
+    
+    if (btn) {
+      btn.style.display = 'block'; // Показываем кнопку только тебе
+      btn.addEventListener('click', () => { 
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none'; 
+      });
+    }
   });
 })();
