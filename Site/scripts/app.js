@@ -82,21 +82,25 @@
 
         if (status === 'online') {
           badge.innerHTML = `<span class="online-dot"></span>${lang === 'ru' ? 'Онлайн' : 'Online'}`;
+          badge.style.background = 'linear-gradient(90deg, rgba(0, 255, 136, 0.3), rgba(0, 196, 107, 0.02))';
           badge.style.color = '#00ff88';
           badge.style.borderColor = 'rgba(0, 255, 136, 0.3)';
         } 
         else if (status === 'idle') {
           badge.innerHTML = `<span class="online-dot" style="background:#ffaa00; box-shadow:0 0 12px #ffaa00;"></span>${lang === 'ru' ? 'Отошел' : 'Idle'}`;
+          badge.style.background = 'linear-gradient(90deg, rgba(255, 170, 0, 0.3), rgba(0, 196, 107, 0.02))';
           badge.style.color = '#ffaa00';
           badge.style.borderColor = 'rgba(255, 170, 0, 0.3)';
         } 
         else if (status === 'dnd') {
           badge.innerHTML = `<span class="online-dot" style="background:#ff3333; box-shadow:0 0 12px #ff3333;"></span>${lang === 'ru' ? 'Не беспокоить' : 'Do Not Disturb'}`;
           badge.style.color = '#ff3333';
+          badge.style.background = 'linear-gradient(90deg, rgba(255, 51, 51, 0.1), rgba(0, 196, 107, 0.02))';
           badge.style.borderColor = 'rgba(255, 51, 51, 0.3)';
-        } 
+        }
         else {
           badge.innerHTML = `<span class="online-dot" style="background:#555; box-shadow:none;"></span>${lang === 'ru' ? 'Не в сети' : 'Offline'}`;
+          badge.style.background = 'linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(0, 196, 107, 0.02))';
           badge.style.color = '#92cfa7'; 
           badge.style.borderColor = 'rgba(255, 255, 255, 0.08)';
         }
