@@ -18,9 +18,9 @@
     },
     "date": "2026-06-24",
     "cover": "/Site/assets/preview_map_speed_craft.webp",
-    "link": "#"
     "category": { "ru": "Карта", "en": "Map" },
-  },
+    "link": "#"
+      },
   {
     "id": "proj-1782317471345",
     "title": {
@@ -40,9 +40,9 @@
     },
     "date": "2026-06-24",
     "cover": "/Site/assets/preview_datapack_DTM.webp",
-    "link": "#"
     "category": { "ru": "Датапак", "en": "Datapack" },
-  },
+    "link": "#"
+      },
   {
     "id": "proj-1782317376855",
     "title": {
@@ -62,7 +62,7 @@
     },
     "date": "2026-06-24",
     "cover": "/Site/assets/preview_datapack_RS.webp",
-    "link": "#"
     "category": { "ru": "Датапак", "en": "Datapack" },
-  }
+    "link": "#"
+      }
 ]
