@@ -35,12 +35,25 @@
 
   function createCard(p,lang){
     const el = document.createElement('div'); el.className='card';
-    // cover
+    
+    // Модифицированный блок обложки
     if(p.cover){
       const cov = document.createElement('div'); cov.className='cover';
       const img = document.createElement('img'); img.src = p.cover; img.alt = p.title[lang] || p.title.ru;
-      cov.appendChild(img); el.appendChild(cov);
+      cov.appendChild(img); 
+
+      // Добавляем кастомную плашку, если поле category существует в JSON
+      if (p.category) {
+        const customBadge = document.createElement('div');
+        customBadge.className = 'custom-project-badge';
+        // Отображаем язык в зависимости от выбранного переключателя
+        customBadge.textContent = p.category[lang] || p.category.ru || '';
+        cov.appendChild(customBadge);
+      }
+
+      el.appendChild(cov);
     }
+    
     const title = document.createElement('div'); title.className='title'; title.textContent = p.title[lang] || p.title.ru;
     const desc = document.createElement('div'); desc.className='desc'; desc.textContent = p.description[lang] || p.description.ru;
     const tagWrap = document.createElement('div'); tagWrap.style.marginTop='8px';
