@@ -174,8 +174,8 @@ body{
   position: fixed; /* Именно fixed, чтобы не зависеть от скролла страницы */
   top: 0;
   left: 0;
-  width: 400px;  /* Размер твоего свечения */
-  height: 400px;
+  width: 100px;  /* Размер твоего свечения */
+  height: 100px;
   background: radial-gradient(circle, rgba(0, 255, 136, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
   pointer-events: none; /* Чтобы курсор не перекрывал клики по кнопкам и ссылкам */
   transform: translate(-50%, -50%); /* Сдвигает центр градиента ровно на острие мыши */
