@@ -17,7 +17,7 @@
       "currency": "RUB"
     },
     "date": "2026-06-24",
-    "cover": "/Site/assets/preview_map_speed_craft.png",
+    "cover": "/Site/assets/preview_map_speed_craft.webp",
     "link": "#"
   },
   {
@@ -38,7 +38,7 @@
       "currency": "RUB"
     },
     "date": "2026-06-24",
-    "cover": "/Site/assets/preview_datapack_DTM.png",
+    "cover": "/Site/assets/preview_datapack_DTM.webp",
     "link": "#"
   },
   {
@@ -59,7 +59,7 @@
       "currency": "RUB"
     },
     "date": "2026-06-24",
-    "cover": "/Site/assets/preview_datapack_RS.png",
+    "cover": "/Site/assets/preview_datapack_RS.webp",
     "link": "#"
   }
 ]
