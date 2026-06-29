@@ -150,6 +150,22 @@ body{
 .contact-item:hover svg{filter:drop-shadow(0 0 8px rgba(0,255,136,0.6))}
 .contact-item:hover a,.contact-item:hover span{color:var(--text)}
 
+.services {
+  padding: 70px 0;
+}
+
+.service-card {
+  min-height: 150px;
+  justify-content: flex-start;
+  border-left: 3px solid var(--accent-dark); /* Красивая зеленая полоса слева */
+  transition: all 280ms ease;
+}
+
+.service-card:hover {
+  border-left-color: var(--accent);
+  background: linear-gradient(180deg, rgba(0, 255, 136, 0.04), rgba(255, 255, 255, 0.01));
+}
+
 #cursor-glow{position:fixed;width:200px;height:200px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle, rgba(0,255,136,0.15), transparent 70%);filter:blur(40px);mix-blend-mode:screen;display:none}
 body{cursor:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="3" fill="%2300ff88"/></svg>') 12 12, auto}
 
