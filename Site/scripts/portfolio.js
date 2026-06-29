@@ -25,6 +25,50 @@
     }
   ];
 
+  // Массив твоих услуг. Чтобы добавить новую услугу — просто допиши её сюда по аналогии!
+  const servicesData = [
+    {
+      title: { ru: "Создание датапаков на заказ", en: "Custom Datapack Development" },
+      description: { ru: "Разработка .mcfunction любой сложности: кастомные механики, крафты, оптимизация и триггеры для серверов.", en: "Development of .mcfunction of any complexity: custom mechanics, crafts, optimization, and server triggers." }
+    },
+    {
+      title: { ru: "Создание карт на заказ", en: "Custom Map Making" },
+      description: { ru: "Уникальные мини-игры, карты с сюжетом, лобби, сложная система очередей и подсчет статистики.", en: "Unique mini-games, story maps, lobbies, complex queue systems, and statistics tracking." }
+    },
+    {
+      title: { ru: "Создание баннеров/превью", en: "Banner & Preview Design" },
+      description: { ru: "Яркое и сочное оформление для твоих проектов, серверов или видео на YouTube в стилистике Minecraft.", en: "Bright and juicy designs for your projects, servers, or YouTube videos in Minecraft style." }
+    }
+  ];
+
+  // Функция для рендера блока услуг
+  function renderServices(lang) {
+    const sList = document.getElementById('services-list');
+    if (!sList) return;
+    sList.innerHTML = '';
+
+    servicesData.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'card service-card';
+
+      const title = document.createElement('div');
+      title.className = 'title';
+      title.style.fontSize = '1.2rem';
+      title.textContent = s.title[lang] || s.title.ru;
+
+      const desc = document.createElement('div');
+      desc.className = 'desc';
+      desc.style.color = 'var(--muted)';
+      desc.style.marginTop = '8px';
+      desc.style.lineHeight = '1.6';
+      desc.textContent = s.description[lang] || s.description.ru;
+
+      card.appendChild(title);
+      card.appendChild(desc);
+      sList.appendChild(card);
+    });
+  }
+
   function formatPrice(amount,currency,lang){
     try{
       const locale = lang === 'ru' ? 'ru-RU' : 'en-US';
@@ -94,7 +138,10 @@
     const list = container(); if(!list) return;
     list.innerHTML='';
     projects.forEach(p=> list.appendChild(createCard(p,currentLang)));
-    // reattach reveal observer
+    
+    // Вшиваем обновление услуг при смене языка
+    renderServices(currentLang);
+
     if(window.ScrollAnim && window.ScrollAnim.observe) window.ScrollAnim.observe(document.querySelectorAll('.card'));
   }
 
