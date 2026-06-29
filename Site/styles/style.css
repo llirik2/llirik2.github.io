@@ -154,6 +154,10 @@ body{
   padding: 70px 0;
 }
 
+#contacts {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 .service-card {
   min-height: 150px;
   justify-content: flex-start;
