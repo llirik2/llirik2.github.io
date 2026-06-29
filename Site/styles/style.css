@@ -61,9 +61,9 @@ body{
 }
 
 /* Обязательно добавляем position: relative для корректного позиционирования пометки */
+/* Возвращаем обложку в дефолтный вид */
 .card .cover {
-  position: relative; 
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 16 / 9;
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -72,35 +72,30 @@ body{
   margin-bottom: 6px;
 }
 
-/* Стили для новой кастомной зеленой пометки с градиентом */
+/* Строка-контейнер для цены и плашки */
+.card-footer-row {
+  display: flex;
+  justify-content: space-between; /* Цена уйдет влево, плашка — вправо */
+  align-items: center;
+  margin-top: auto; /* Выталкивает строку к самому низу карточки */
+  padding-top: 10px;
+}
+
+/* Обновленная кастомная зеленая подложка в углу */
 .custom-project-badge {
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-  z-index: 5;
-  
-  /* Зеленый неоновый градиент в стиле вашей темы */
   background: linear-gradient(135deg, rgba(0, 255, 136, 0.9) 0%, rgba(0, 196, 107, 0.9) 100%);
-  /* Цвет текста темный, чтобы он хорошо читался на ярко-зеленом фоне */
-  color: #00110a; 
-  
-  font-size: 0.8rem;
+  color: #00110a;
+  font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
-  
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: 6px;
-  
-  /* Легкое размытие заднего плана и тень для сочности */
-  backdrop-filter: blur(4px);
-  box-shadow: 0 4px 12px rgba(0, 196, 107, 0.35);
-  pointer-events: none; /* Чтобы плашка не мешала кликать по карточке */
-  
+  box-shadow: 0 4px 12px rgba(0, 196, 107, 0.2);
   transition: transform 220ms ease;
 }
 
-/* Дополнительный минорный эффект при наведении на карточку */
+/* Легкий интерактив при наведении на саму карточку */
 .card:hover .custom-project-badge {
   transform: scale(1.05);
 }
