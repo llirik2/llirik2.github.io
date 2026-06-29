@@ -85,6 +85,41 @@
     });
   }
 
+  document.addEventListener('DOMContentLoaded', () => {
+  const contactBtn = document.getElementById('contact-btn');
+  const contactsSection = document.getElementById('contacts');
+
+  if (contactBtn && contactsSection) {
+    contactBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // 1. Плавный скролл до блока контактов
+      contactsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // 2. Красивая GSAP анимация подсветки (запустится параллельно со скроллом)
+      // Сначала блок резко вспыхнет зеленым свечением и слегка увеличится,
+      // а затем плавно вернется в исходное состояние.
+      gsap.fromTo(contactsSection, 
+        {
+          boxShadow: '0 0 40px rgba(0, 255, 136, 0.6)',
+          borderColor: '#00ff88',
+          scale: 1.02,
+          backgroundColor: 'rgba(0, 255, 136, 0.04)'
+        }, 
+        {
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)', // Твоя стандартная тень
+          borderColor: 'rgba(255, 255, 255, 0.08)', // Твой стандартный border
+          scale: 1,
+          backgroundColor: 'transparent',
+          duration: 1.2, // Длительность затухания в секундах
+          ease: 'power2.out',
+          clearProps: 'scale,backgroundColor' // Очищаем временные стили после анимации
+        }
+      );
+    });
+  }
+});
+
   // Логика индикатора онлайна
   async function checkOnlineStatus() {
     const badge = document.getElementById('online-status');
@@ -95,9 +130,9 @@
     // Самый надежный бесплатный способ — проверять статус через API Discord (через сервис Lanyard)
     // Твой Discord ID (из контактов boober4uk): чтобы узнать точный числовой ID, включи режим разработчика в Discord, 
     // нажми правой кнопкой на свой профиль и выбери "Копировать ID". Замени строку ниже на свой ID.
-    const discordId = "ТВОЙ_ЦИФРОВОЙ_DISCORD_ID"; 
+    const discordId = "982175024255471626"; 
 
-    if (discordId === "ТВОЙ_ЦИФРОВОЙ_DISCORD_ID") {
+    if (discordId === "982175024255471626") {
       // Если ID не настроен, выставляем заглушку «В сети»
       badge.classList.add('online');
       txt.textContent = lang === 'ru' ? 'В сети' : 'Online';
