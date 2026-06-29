@@ -36,33 +36,45 @@
   function createCard(p,lang){
     const el = document.createElement('div'); el.className='card';
     
-    // Модифицированный блок обложки
+    // 1. Обложка теперь чистая, без плашек внутри
     if(p.cover){
       const cov = document.createElement('div'); cov.className='cover';
       const img = document.createElement('img'); img.src = p.cover; img.alt = p.title[lang] || p.title.ru;
-      cov.appendChild(img); 
-
-      // Добавляем кастомную плашку, если поле category существует в JSON
-      if (p.category) {
-        const customBadge = document.createElement('div');
-        customBadge.className = 'custom-project-badge';
-        // Отображаем язык в зависимости от выбранного переключателя
-        customBadge.textContent = p.category[lang] || p.category.ru || '';
-        cov.appendChild(customBadge);
-      }
-
-      el.appendChild(cov);
+      cov.appendChild(img); el.appendChild(cov);
     }
     
     const title = document.createElement('div'); title.className='title'; title.textContent = p.title[lang] || p.title.ru;
     const desc = document.createElement('div'); desc.className='desc'; desc.textContent = p.description[lang] || p.description.ru;
+    
     const tagWrap = document.createElement('div'); tagWrap.style.marginTop='8px';
     p.tags.forEach(t => {
       const b = document.createElement('span'); b.className='badge'; b.textContent = t === 'order' ? (lang==='ru'? 'Заказ':'Order') : (lang==='ru'? 'Собственная инициатива':'Own');
       tagWrap.appendChild(b);
     });
-    const price = document.createElement('div'); price.className='price'; price.textContent = formatPrice(p.price.amount,p.price.currency,lang);
-    el.appendChild(title); el.appendChild(desc); el.appendChild(tagWrap); el.appendChild(price);
+    
+    // 2. Создаем контейнер для нижней строки (Цена + Кастомная метка)
+    const footerRow = document.createElement('div');
+    footerRow.className = 'card-footer-row';
+    
+    // Цена
+    const price = document.createElement('div'); 
+    price.className='price'; 
+    price.textContent = formatPrice(p.price.amount,p.price.currency,lang);
+    footerRow.appendChild(price);
+    
+    // Переносим кастомную метку ("Датапак", "Абырвалг" и т.д.) в правый нижний угол
+    if (p.category) {
+      const customBadge = document.createElement('div');
+      customBadge.className = 'custom-project-badge';
+      customBadge.textContent = p.category[lang] || p.category.ru || '';
+      footerRow.appendChild(customBadge);
+    }
+    
+    el.appendChild(title); 
+    el.appendChild(desc); 
+    el.appendChild(tagWrap); 
+    el.appendChild(footerRow); // Добавляем общую строку вниз карточки
+    
     return el;
   }
 
