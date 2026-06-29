@@ -122,41 +122,54 @@
 
   // Логика индикатора онлайна
   async function checkOnlineStatus() {
-    const badge = document.getElementById('online-status');
-    const txt = badge ? badge.querySelector('.status-text') : null;
-    if (!badge || !txt) return;
+  // Находим элементы по классам, которые реально прописаны у тебя в index.html
+  const badge = document.querySelector('.online-badge');
+  if (!badge) return;
 
-    // ОТВЕТ НА ВОПРОС: Как трекать онлайн?
-    // Самый надежный бесплатный способ — проверять статус через API Discord (через сервис Lanyard)
-    // Твой Discord ID (из контактов boober4uk): чтобы узнать точный числовой ID, включи режим разработчика в Discord, 
-    // нажми правой кнопкой на свой профиль и выбери "Копировать ID". Замени строку ниже на свой ID.
-    const discordId = "982175024255471626"; 
+  const discordId = "982175024255471626"; // Твой проверенный Discord ID
+  
+  // Определяем текущий язык сайта. 
+  // Мы смотрим на кнопку RU, если у неё есть класс active — значит язык русский, иначе английский.
+  const ruBtn = document.getElementById('lang-ru');
+  const currentLang = (ruBtn && ruBtn.classList.contains('active')) ? 'ru' : 'en';
 
-    if (discordId === "982175024255471626") {
-      // Если ID не настроен, выставляем заглушку «В сети»
-      badge.classList.add('online');
-      txt.textContent = lang === 'ru' ? 'В сети' : 'Online';
-      return;
-    }
-
-    try {
-      const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
-      const data = await res.json();
+  try {
+    const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
+    const data = await res.json();
+    
+    if (data.success) {
+      const status = data.data.discord_status; // 'online', 'idle', 'dnd', 'offline'
       
-      if (data.success && (data.data.discord_status === 'online' || data.data.discord_status === 'dnd' || data.data.discord_status === 'idle')) {
-        badge.className = 'online-badge online';
-        txt.textContent = lang === 'ru' ? 'В сети' : 'Online';
-      } else {
-        badge.className = 'online-badge offline';
-        txt.textContent = lang === 'ru' ? 'Не в сети' : 'Offline';
-      }
-    } catch (e) {
-      // Фоллбек на случай ошибки сети
-      badge.className = 'online-badge online';
-      txt.textContent = lang === 'ru' ? 'В сети' : 'Online';
-    }
-  }
+      // Находим точку внутри плашки, чтобы управлять её анимацией и цветом
+      const dot = badge.querySelector('.online-dot');
+      if (dot) dot.style.animation = 'none'; // Сбрасываем дефолтную анимацию для кастомных статусов
 
-  document.addEventListener('DOMContentLoaded',init);
-  window.Site = { setLang };
+      if (status === 'online') {
+        badge.innerHTML = `<span class="online-dot"></span>${currentLang === 'ru' ? 'Онлайн' : 'Online'}`;
+        badge.style.color = '#00ff88';
+        badge.style.borderColor = 'rgba(0, 255, 136, 0.3)';
+      } 
+      else if (status === 'idle') {
+        badge.innerHTML = `<span class="online-dot" style="background:#ffaa00; box-shadow:0 0 12px #ffaa00;"></span>${currentLang === 'ru' ? 'Отошел' : 'Idle'}`;
+        badge.style.color = '#ffaa00';
+        badge.style.borderColor = 'rgba(255, 170, 0, 0.3)';
+      } 
+      else if (status === 'dnd') {
+        badge.innerHTML = `<span class="online-dot" style="background:#ff3333; box-shadow:0 0 12px #ff3333;"></span>${currentLang === 'ru' ? 'Не беспокоить' : 'Do Not Disturb'}`;
+        badge.style.color = '#ff3333';
+        badge.style.borderColor = 'rgba(255, 51, 51, 0.3)';
+      } 
+      else {
+        // Статус 'offline'
+        badge.innerHTML = `<span class="online-dot" style="background:#555; box-shadow:none;"></span>${currentLang === 'ru' ? 'Не в сети' : 'Offline'}`;
+        badge.style.color = '#92cfa7'; // Твой цвет --muted
+        badge.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+      }
+    }
+  } catch (e) {
+    console.error("Ошибка обновления статуса Discord:", e);
+    // Фоллбек на случай сбоя сети — показываем «В сети» по умолчанию
+    badge.innerHTML = `<span class="online-dot"></span>${currentLang === 'ru' ? 'Онлайн' : 'Online'}`;
+  }
+}
 })();
