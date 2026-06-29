@@ -105,47 +105,67 @@ body{
 }
 
 /* Ограничиваем левую колонку с текстом, чтобы она не наезжала на скина */
+/* Базовые настройки секции */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 60px 0; /* Комфортные отступы вместо жесткой высоты */
+}
+
+/* Контейнер флексов — теперь он чётко зажат внутри .container */
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Расталкивает текст влево, аватарку вправо */
+  gap: 40px;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+/* Ограничиваем текст, чтобы он не уплывал */
 .hero-text {
   flex: 1;
-  max-width: 550px;
+  max-width: 500px;
   text-align: left;
 }
 
-/* Контейнер для скина бобра в правой части */
+/* Блок аватарки, который встанет точно в нужную зону */
 .hero-avatar-wrap {
   flex: 1;
-  max-width: 300px; /* Оптимальный размер, чтобы скин смотрелся крупно */
+  max-width: 280px; /* Размер бобра на десктопах */
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
-  z-index: 10; /* Поднимаем бобра над кубами фона, чтобы они его не резали */
 }
 
-/* Накладываем плавный градиент исчезновения прямо на картинку скина */
+/* Плавная маска затухания прямо на изображении */
 .hero-avatar {
   width: 100%;
   height: auto;
   display: block;
   object-fit: contain;
+  z-index: 12;
   
-  /* Эффект маски: верх четкий, а с середины (45%) до низа (90%) уходит в 0% видимости */
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 90%);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 90%);
+  /* Верх картинки — видимый, низ плавно исчезает, обнажая кубы фона */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%);
 }
 
-/* Адаптивность для планшетов и телефонов */
+/* Адаптив под мобильные устройства */
 @media (max-width: 860px) {
   .hero-inner {
-    flex-direction: column; /* Выстраиваем в один столбик, если экран узкий */
+    flex-direction: column;
     text-align: center;
-    gap: 40px;
+    gap: 30px;
   }
   .hero-text {
     text-align: center;
     margin: 0 auto;
   }
   .hero-avatar-wrap {
-    max-width: 220px; /* Чуть уменьшаем скин на мобилках */
+    max-width: 200px; /* Делаем чуть меньше на телефонах */
     margin: 0 auto;
   }
 }
