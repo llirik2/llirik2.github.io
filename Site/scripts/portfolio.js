@@ -18,7 +18,7 @@
       title:{ru:'Датапак с новыми функциями',en:'Datapack with new features'},
       description:{ru:'Набор команд и механик для сервера.',en:'Set of commands and mechanics for a server.'},
       tags:['own'],
-      price:{amount:50,currency:'USD'},
+      price:{amount:0,currency:'USD'},
       date:'2026-02-15',
       cover:'https://images.unsplash.com/photo-1523473827535-7c8b9c0c1f5c?auto=format&fit=crop&w=800&q=80',
       link:'#'
@@ -101,10 +101,12 @@
     footerRow.className = 'card-footer-row';
     
     // Цена
-    const price = document.createElement('div'); 
-    price.className='price'; 
-    price.textContent = formatPrice(p.price.amount,p.price.currency,lang);
-    footerRow.appendChild(price);
+    if (p.price.amount > 0) {
+      const price = document.createElement('div'); 
+      price.className='price'; 
+      price.textContent = formatPrice(p.price.amount,p.price.currency,lang);
+      footerRow.appendChild(price);
+    }
     
     // Переносим кастомную метку ("Датапак", "Абырвалг" и т.д.) в правый нижний угол
     if (p.category) {

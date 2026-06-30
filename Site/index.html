@@ -2,14 +2,16 @@
 <html lang="ru">
 	<head>
 		<meta charset="utf-8" />
+		<link rel="preload" href="https://fonts.cdnfonts.com/s/31977/Minecraftia.woff" as font type="font/woff" crossorigin>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>bober4uk_ — портфолио</title>
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="styles/style.css">
-		<link rel="icon" href="/Site/assets/favicon.svg" type="image/svg+xml">
+		<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 	</head>
 	<body>
+		<canvas id="bgSV-canvas"></canvas>
 		<div id="bg" aria-hidden="true"></div>
 		<div id="cursor-glow" aria-hidden="true"></div>
 		<header class="top">
@@ -61,7 +63,11 @@
 			<section class="contacts container reveal" id="contacts">
 				<div class="contacts-header">
 					<h2 data-i18n="contacts_title">Контакты</h2>
-					<div class="online-badge"><span class="online-dot"></span>Онлайн</div>
+					
+					<div class="online-badge">
+					<span class="online-dot"></span>
+					<span data-i18n="status_online">Онлайн</span>
+					</div>
 				</div>
 				<ul class="contacts-list">
 					<li class="contact-item">

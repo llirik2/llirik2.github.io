@@ -126,38 +126,39 @@
     });
   }
 
-  function setupContactButton() {
-    const contactBtn = document.getElementById('contact-btn');
-    const contactsSection = document.getElementById('contacts');
+function setupContactButton() {
+  // Ищем кнопку по её реальному классу на сайте (.cta-button)
+  const contactBtn = document.querySelector('.cta-button');
+  const contactsSection = document.getElementById('contacts');
+  const contactsHeader = document.querySelector('.contacts-header');
 
-    if (contactBtn && contactsSection) {
-      contactBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+  if (contactBtn && contactsSection) {
+    contactBtn.addEventListener('click', (e) => {
+      e.preventDefault();
 
-        // 1. Плавный скролл до блока контактов
-        contactsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // 1. Плавный скролл до блока контактов ровно по центру экрана
+      contactsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-        // 2. Красивая GSAP анимация подсветки
-        gsap.fromTo(contactsSection, 
-          {
-            boxShadow: '0 0 40px rgba(0, 255, 136, 0.6)',
-            borderColor: '#00ff88',
-            scale: 1.02,
-            backgroundColor: 'rgba(0, 255, 136, 0.04)'
-          }, 
-          {
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
-            borderColor: 'rgba(255, 255, 255, 0.08)',
-            scale: 1,
-            backgroundColor: 'transparent',
-            duration: 1.2,
-            ease: 'power2.out',
-            clearProps: 'scale,backgroundColor'
-          }
-        );
-      });
-    }
+      // 2. Вспышка горизонтального прямоугольника
+      if (contactsHeader) {
+        // Включаем прямоугольник (он мгновенно разлетается на 200vw)
+        contactsHeader.classList.add('pulse-line');
+
+        // Через 600 миллисекунд (когда скролл завершится) плавно тушим полосу
+        setTimeout(() => {
+          // Делаем затухание чуть более медленным и красивым
+          contactsHeader.style.transition = 'transform 2s ease, opacity 2s ease';
+          contactsHeader.classList.remove('pulse-line');
+          
+          // Возвращаем дефолтные быстрые настройки анимации для следующего клика
+          setTimeout(() => {
+            contactsHeader.style.transition = '';
+          }, 900);
+        }, 600);
+      }
+    });
   }
+}
 
   async function init(){
     await loadI18n();
@@ -175,6 +176,108 @@
     if(window.ThreeBG && window.ThreeBG.init) window.ThreeBG.init();
     if(window.ScrollAnim && window.ScrollAnim.init) window.ScrollAnim.init();
   }
+
+  /*
+  // Инициализация холста светлячков
+  const canvas = document.getElementById('bgSV-canvas');
+  
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const mouse = { x: null, y: null };
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', (e) => { 
+      mouse.x = e.clientX; 
+      mouse.y = e.clientY; 
+    });
+    window.addEventListener('mouseleave', () => { 
+      mouse.x = null; 
+      mouse.y = null; 
+    });
+
+    class Particle {
+      constructor() {
+        this.reset();
+        // Рандомно распределяем частицы по высоте при старте, чтобы они не летели все снизу одновременно
+        this.y = Math.random() * canvas.height;
+      }
+      
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + 10;
+        this.size = Math.random() * 2 + 1;
+        this.speedY = Math.random() * 0.4 + 0.1;
+        this.alpha = Math.random() * 0.4 + 0.1;
+      }
+      
+      update() {
+        if (mouse.x !== null && mouse.y !== null) {
+          // Рассчитываем расстояние до курсора мыши
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          // Если светлячок подлетел слишком близко (ближе 80px), он плавно облетает мышь вверх
+          if (distance < 80) {
+            this.y -= this.speedY * 1.5;
+            this.x += (Math.random() - 0.5) * 0.5; // Легкое пиксельное покачивание в стороны
+          } else {
+            // Если далеко — плавно притягивается по красивой дуге
+            this.x += dx * 0.015;
+            this.y += dy * 0.015;
+          }
+        } else {
+          // Обычный ленивый полет вверх, если мышка ушла с экрана
+          this.y -= this.speedY;
+        }
+
+        // Если светлячок вылетел за любую из границ экрана — сбрасываем его вниз
+        if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
+          this.reset();
+        }
+      }
+      
+      draw() {
+        ctx.fillStyle = `rgba(0, 255, 136, ${this.alpha})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = '#00ff88';
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    function init() {
+      resize();
+      particles = [];
+      for (let i = 0; i < 25; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      // Очищаем строго буфер холста
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Сбрасываем тень контекста, чтобы она случайно не размывала другие элементы сайта
+      ctx.shadowBlur = 0; 
+      
+      particles.forEach(p => { 
+        p.update(); 
+        p.draw(); 
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    init();
+    animate();
+  }
+*/
 
   document.addEventListener('DOMContentLoaded', init);
 })();

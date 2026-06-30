@@ -9,6 +9,7 @@
     "filter_order":"Заказ",
     "filter_own":"Собственная инициатива",
     "contacts_title": "Контакты",
+    "status_online": "Онлайн",
     "cta_button": "Связаться"
   },
   "en":{
@@ -21,6 +22,7 @@
     "filter_order":"Order",
     "filter_own":"Own Project",
     "contacts_title": "Contacts",
+    "status_online": "Online",
     "cta_button": "Contact Me"
   }
 }
