@@ -67,5 +67,30 @@
     "cover": "/Site/assets/preview_datapack_RS.webp",
     "category": { "ru": "Датапак", "en": "Datapack" },
     "link": "#"
+  },
+  {
+    "id": "proj-1782317803049",
+    "title": {
+      "ru": "Datapack for prank",
+      "en": "Датапак для пранка"
+    },
+    "description": {
+      "ru": "Датапак был сделан под заказ клиента для пранка друзей на видео!",
+      "en": "The datapack was custom-made for a client to prank their friends on video"
+    },
+    "tags": [
+      "order"
+    ],
+    "price": {
+      "amount": 450,
+      "currency": "RUB"
+    },
+    "date": "2026-06-30",
+    "cover": "/Site/assets/DFP_preview_datapack (1).webp",
+    "category": {
+      "ru": "Датапак",
+      "en": "Datapack"
+    },
+    "link": "#"
   }
 ]
