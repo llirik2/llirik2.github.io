@@ -330,4 +330,17 @@ body{cursor:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" widt
   background: transparent !important; /* Убирает черный фон холста */
 }
 
+/* Холст эффекта матрицы: на весь экран, позади контента, размыт и не ловит события */
+#matrix {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Под контентом, над фоном */
+  pointer-events: none;
+  background: transparent !important;
+  filter: blur(6px) saturate(1.1);
+  opacity: 0.9;
+}
+
 @media (max-width:600px){.section-header{flex-direction:column;align-items:flex-start;gap:12px}.top-row{gap:12px}.contacts-header{flex-direction:column;align-items:flex-start}}
