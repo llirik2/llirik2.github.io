@@ -17,7 +17,7 @@
       "currency": "RUB"
     },
     "date": "2026-06-24",
-    "cover": "/Site/assets/preview_map_speed_craft.webp",
+    "cover": "/assets/preview_map_speed_craft.webp",
     "category": {
       "ru": "Карта",
       "en": "Map"
@@ -42,7 +42,7 @@
       "currency": "RUB"
     },
     "date": "2026-06-24",
-    "cover": "/Site/assets/preview_datapack_DTM.webp",
+    "cover": "/assets/preview_datapack_DTM.webp",
     "category": { "ru": "Датапак", "en": "Datapack" },
     "link": "#"
   },
@@ -64,7 +64,7 @@
       "currency": "RUB"
     },
     "date": "2026-06-24",
-    "cover": "/Site/assets/preview_datapack_RS.webp",
+    "cover": "/assets/preview_datapack_RS.webp",
     "category": { "ru": "Датапак", "en": "Datapack" },
     "link": "#"
   },
@@ -88,7 +88,7 @@
       "currency": "RUB"
     },
     "date": "2026-06-30",
-    "cover": "/Site/assets/DFP_preview_datapack (1).webp",
+    "cover": "/assets/DFP_preview_datapack (1).webp",
     "category": {
       "ru": "Датапак",
       "en": "Datapack"
