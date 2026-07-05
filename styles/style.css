@@ -48,18 +48,42 @@ body{
 .hero{position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 40% 20%, rgba(0,255,136,0.14), transparent 18%),radial-gradient(circle at 80% 10%, rgba(0,255,136,0.08), transparent 16%);pointer-events:none}
 .hero h1 {
-  font-family: 'Minecraftia', 'Inter', sans-serif; /* Подключаем майнкрафт-шрифт */
+  font-family: 'Minecraftia', 'Inter', sans-serif;
   font-size: clamp(2.8rem, 5vw, 4.5rem);
   margin: 0 0 14px;
   white-space: nowrap;
-  letter-spacing: 0.3rem; /* Пиксельные шрифты круто смотрятся с небольшим зазором букв */
+  letter-spacing: 0.3rem;
   
-  /* Твой текущий градиент на тексте */
-  background: linear-gradient(90deg,#7affe3,#00c46b 45%,#7affe3);
+  /* Бесшовный градиент */
+  background: linear-gradient(
+    90deg, 
+    #7affe3 0%, 
+    #00c46b 50%, 
+    #7affe3 100%
+  );
+  
+  background-size: 200% auto;
+  
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 18px 70px rgba(0,196,107,0.12);
+  text-shadow: 0 18px 70px rgba(0, 196, 107, 0.12);
+
+  /* Общее время цикла теперь 4 секунды (3 секунды крутится + 1 секунда стоит) */
+  animation: shine 5s ease-in-out infinite;
+}
+
+@keyframes shine {
+  /* 0% до 75% — градиент плавно делает полный прокрут (занимает 3 секунды) */
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
 }
 .subtitle{font-size:1.25rem;color:var(--muted);max-width:780px;line-height:1.85}
 .about, .portfolio, .contacts{padding:70px 0}

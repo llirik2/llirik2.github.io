@@ -235,4 +235,56 @@ function setupContactButton() {
   })();
 
   document.addEventListener('DOMContentLoaded', init);
+  // ========== ОЗВУЧКА КНОПОК ПРИ НАВЕДЕНИИ ==========
+// ========== УЛУЧШЕННАЯ ОЗВУЧКА КНОПОК, КАРТОЧЕК И КОНТАКТОВ ==========
+  document.addEventListener('DOMContentLoaded', () => {
+      // Создаем один аудио-объект для сайта
+      const hoverSound = new Audio('/assets/hover.mp3');
+      hoverSound.volume = 0.4; // Громкость (от 0.0 до 1.0)
+
+      // Функция для привязки звука к элементу
+      function initHoverSound(element) {
+          // Проверяем, чтобы не вешать слушатель дважды на один и тот же элемент
+          if (element.dataset.hoverAudioSet) return;
+          element.dataset.hoverAudioSet = "true";
+
+          element.addEventListener('mouseenter', () => {
+              // Сбрасываем аудио к началу для мгновенного отклика
+              hoverSound.currentTime = 0;
+              
+              // Воспроизводим звук
+              hoverSound.play().catch(err => {
+                  // Игнорируем блокировку автоплея браузеров до первого клика
+              });
+          });
+      }
+
+      // Полный список селекторов, включая новые карточки и контакты
+      const selectors = [
+          'button',             // Все стандартные кнопки
+          '.btn',                // Главные кнопки (например, "Связаться")
+          '.nav-btn',            // Кнопки навигации
+          '.lang-btn',           // Переключатели языков
+          '.modal-close',        // Закрытие модалок
+          '.social-icon',        // Иконки соцсетей (Telegram, Discord и т.д.)
+          '.contact-link',       // Любые ссылки в блоке контактов
+          '.card',               // Базовый класс карточек
+          '.card-link',          // Интерактивные карточки проектов
+          '.service-card',       // Карточки услуг из нового скрипта
+          '.project-card'        // Альтернативный класс карточек проектов
+      ].join(', ');
+      
+      // 1. Сразу вешаем звук на то, что уже загружено в HTML
+      document.querySelectorAll(selectors).forEach(initHoverSound);
+
+      // 2. Следим за перерисовкой страницы (смена языка, фильтры, генерация карточек)
+      const observer = new MutationObserver(() => {
+          document.querySelectorAll(selectors).forEach(initHoverSound);
+      });
+
+      observer.observe(document.body, {
+          childList: true,
+          subtree: true
+      });
+  });
 })();
