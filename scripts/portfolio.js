@@ -72,17 +72,43 @@
     });
   }
 
-  function formatPrice(amount,currency,lang){
-    try{
+  function formatPrice(amount, currency, lang, tags = []) {
+    try {
       if (!amount) return '';
+      
       const locale = lang === 'ru' ? 'ru-RU' : 'en-US';
-      const opts = {style:'currency',currency: currency==='RUB'?'RUB':'USD',maximumFractionDigits: currency==='RUB'?0:2};
-      return new Intl.NumberFormat(locale,opts).format(amount);
-    }catch(e){return amount+' '+currency}
+      const opts = { 
+        style: 'currency', 
+        currency: currency === 'RUB' ? 'RUB' : 'USD', 
+        maximumFractionDigits: currency === 'RUB' ? 0 : 2 
+      };
+      
+      let formattedPrice = new Intl.NumberFormat(locale, opts).format(amount);
+      
+      // Если проект собственный — делаем цену максимально тихой и аккуратной
+      if (tags && tags.includes('own') && amount > 0) {
+        const prefix = lang === 'ru' ? 'прим. ' : 'est. ';
+        
+        // Никакого курсива и ярких цветов. Единый приглушенный стиль.
+        return `
+          <span class="price-estimated" data-hint="Ориентировочная стоимость аналогичного проекта на заказ" style="color: var(--muted); font-size: 0.95rem; font-weight: 500; font-style: normal;">
+            ${prefix}${formattedPrice}
+          </span>
+        `.trim();
+      }
+      
+      // Обычная жесткая цена коммерческого заказа — остается яркой, жирной и белой
+      return `<span class="price-fixed" style="color: #ffffff; font-weight: 700; font-style: normal;">${formattedPrice}</span>`;
+    } catch (e) {
+      const prefix = (tags && tags.includes('own') && amount > 0) ? (lang === 'ru' ? 'прим. ' : 'est. ') : '';
+      return prefix + amount + ' ' + currency;
+    }
   }
 
   function createCard(p,lang){
-    const el = document.createElement('div'); el.className='card';
+    const el = document.createElement('a'); el.className='card card-link';
+    el.href = 'project.html?id=' + encodeURIComponent(p.id);
+    el.setAttribute('aria-label', p.title[lang] || p.title.ru);
     
     // 1. Обложка
     if(p.cover){
@@ -104,7 +130,7 @@
 
         const translations = {
           'order': { ru: 'Заказ', en: 'Order' },
-          'own': { ru: 'Собственная инициатива', en: 'Own initiative' },
+          'own': { ru: 'От себя', en: 'Own initiative' },
           'tips': { ru: 'Чаевые', en: 'Tips' }
         };
 
@@ -174,31 +200,73 @@
     footerRow.style.display = 'flex';
     footerRow.style.justifyContent = 'space-between';
     footerRow.style.alignItems = 'center';
-    footerRow.style.marginTop = '15px';
+    // Убрали строку с marginTop отсюда, теперь этим рулит CSS!
     
     // Цена
     if (p.price && p.price.amount > 0) {
       const price = document.createElement('div'); 
-      price.className='price'; 
-      price.textContent = formatPrice(p.price.amount,p.price.currency,lang);
+      price.className = 'price'; 
+      // МЕНЯЕМ НА innerHTML:
+      price.innerHTML = formatPrice(p.price.amount, p.price.currency, lang, p.tags); 
       footerRow.appendChild(price);
     }
     
     // Кастомная метка ("Датапак", "Карта" и т.д.)
+    // Контейнер для правой части подвала (версия + категория)
+    const rightSideElements = document.createElement('div');
+    rightSideElements.style.display = 'flex';
+    rightSideElements.style.alignItems = 'center';
+    rightSideElements.style.gap = '8px'; // Отступ между версией и категорией
+    rightSideElements.style.marginLeft = 'auto'; // СТРАХОВКА: всегда прижимает блок вправо, даже если цены нет!
+
+    // 1. Вывод версии (если она указана в JSON)
+    if (p.version) {
+      const versionBadge = document.createElement('div');
+      versionBadge.className = 'project-version-badge';
+      
+      const versionText = Array.isArray(p.version) ? p.version.join(', ') : p.version;
+      versionBadge.textContent = versionText;
+      
+      versionBadge.style.fontSize = '0.8rem';
+      versionBadge.style.color = 'var(--muted)';
+      versionBadge.style.padding = '4px 8px';
+      versionBadge.style.border = '1px solid rgba(255, 255, 255, 0.08)';
+      versionBadge.style.borderRadius = '4px';
+      versionBadge.style.background = 'rgba(255, 255, 255, 0.01)';
+      
+      rightSideElements.appendChild(versionBadge);
+    }
+
+    // 2. Кастомная метка ("Датапак", "Карта" и т.д.)
     if (p.category) {
       const customBadge = document.createElement('div');
       customBadge.className = 'custom-project-badge';
       customBadge.textContent = p.category[lang] || p.category.ru || '';
-      footerRow.appendChild(customBadge);
+      rightSideElements.appendChild(customBadge);
     }
+
+    // Добавляем всё собранное в правую часть строки
+    footerRow.appendChild(rightSideElements);
     
     el.appendChild(footerRow);
-    
     return el;
   }
 
   async function load(){
     try{
+      // Сначала пытаемся загрузить отредактированные данные из localStorage
+      const savedProjects = localStorage.getItem('projects_data');
+      if (savedProjects) {
+        /*try {
+          projects = JSON.parse(savedProjects);
+          console.log('Проекты загружены из localStorage');
+          return;
+        } catch (e) {
+          console.warn('Ошибка парсинга localStorage, загружаю из JSON', e);
+        }*/
+      }
+      
+      // Если нет сохраненных данных, загружаем из JSON
       const res = await fetch('data/projects.json?cache=' + Date.now());
       if(!res.ok) throw new Error('projects response '+res.status);
       projects = await res.json();

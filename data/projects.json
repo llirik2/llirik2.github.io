@@ -9,20 +9,42 @@
       "ru": "Новый режим в майнкрафте который проверяет вашу скорость крафта предметов!",
       "en": "A new mode in Minecraft that tests your crafting speed"
     },
+    "longDescription": {
+      "ru": "<strong>Speed Craft</strong> — это динамичный бесконечный аркадный челлендж на выбывание, рассчитанный на <strong>1–8 игроков</strong>. Игра продолжается до тех пор, пока не останется последний выживший участник!<br><br><strong>Игровой процесс и особенности:</strong><br>• <strong>Бесконечные раунды:</strong> Каждый раунд система выбирает случайный предмет из пула выбранной сложности. У вас есть всего 5 секунд (или меньше!), чтобы успеть воссоздать его на верстаке.<br>• <strong>4 уровня сложности:</strong> На каждом уровне доступно по 10 уникальных предметов. Чем выше сложность, тем больше ингредиентов и запутаннее комбинации рецептов!<br><br><strong>Система Стриков (Серий):</strong><br>Стрики выполняют роль укоротителя времени. Начиная с 5-го успешного крафта подряд, таймер уменьшается на <strong>0.1 сек.</strong> за каждый стрик, вплоть до хардкорных 2 секунд на один крафт!<br><br><strong>Достижения и Испытания (v1.0):</strong><br>В текущей версии доступны 3 достижения и 3 испытания. Разница в хардкоре: достижения можно закрыть за 20–30 минут, а на выполнение испытаний уйдет от часа до полутора часов плотной игры.<br><br><strong>Игровые Модификаторы:</strong><br>• <strong>Second Life</strong> (только для мультиплеера) — дарует второй шанс при ошибке, но сбрасывает ваш текущий стрик и возвращает максимальное время раунда.<br>• <strong>Conveyor</strong> — безумный режим, который сдвигает все предметы в вашем инвентаре на 1 слот вправо каждые 0.75 секунды.<br>• <strong>Randomizer</strong> — полный хаос, постоянно хаотично разбрасывающий ресурсы по всему инвентарю.",
+      "en": "<strong>Speed Craft</strong> is a fast-paced, endless, arcade-style elimination challenge for <strong>1-8 players</strong>. The game continues until the last player standing!<br><br><strong>Gameplay and features:</strong><br>• <strong>Endless rounds:</strong> Each round, the system selects a random item from the pool of the chosen difficulty. You have only 5 seconds (or less!) to recreate it on the crafting table.<br>• <strong>4 difficulty levels:</strong> 10 unique items are available at each level. The higher the difficulty, the more ingredients and more complicated recipe combinations!<br><br><strong>Streak System (Series):</strong><br>Streaks act as a time-shortening feature. Starting from the 5th successful craft in a row, the timer is reduced by <strong>0.1 seconds</strong> for each streak, up to a hardcore 2 seconds per craft!<br><br><strong>Achievements and Challenges (v1.0):</strong><br>The current version includes 3 achievements and 3 challenges. The difference is in the difficulty: achievements can be completed in 20-30 minutes, while completing the challenges will require 1-1.5 hours of intense gameplay.<br><br><strong>Game Modifiers:</strong><br>• <strong>Second Life</strong> (only for multiplayer) — grants a second chance on error, but resets your current streak and returns the maximum round time.<br>• <strong>Conveyor</strong> — a crazy mode that shifts all items in your inventory 1 slot to the right every 0.75 seconds.<br>• <strong>Randomizer</strong> — complete chaos that randomly distributes resources throughout your inventory"
+    },
+    "features": {
+      "ru": [
+        "Система подсчета времени",
+        "Лидерборд рекордов",
+        "Различные режимы сложности",
+        "Награды за победы"
+      ],
+      "en": [
+        "Timing system",
+        "Records leaderboard",
+        "Different difficulty modes",
+        "Reward system"
+      ]
+    },
     "tags": [
       "own"
     ],
+    "version": ["1.21.11"],
     "price": {
-      "amount": 0,
+      "amount": 2000,
       "currency": "RUB"
     },
     "date": "2026-06-24",
-    "cover": "/assets/preview_map_speed_craft.webp",
+    "cover": "assets/preview_map_speed_craft.webp",
     "category": {
       "ru": "Карта",
       "en": "Map"
     },
-    "link": "#"
+    "downloadUrl": "#",
+    "link": "#",
+    "rating": 0,
+    "feedback": ""
   },
   {
     "id": "proj-1782317471345",
@@ -34,17 +56,42 @@
       "ru": "Позволяет игре уменьшать игрока при получении урона.",
       "en": "Allows the game to become small when taking damage"
     },
+    "longDescription": {
+      "ru": "Пакет данных, уменьшающий размер игрока при получении урона.<br><br>\n\nЭтот пакет модификаций добавляет в игру сложности, повышая ее динамику и требуя от игрока более тщательного планирования своих действий. Это помогает повысить вовлеченность и интерес к игровому процессу, а также усложняет прохождение игры.<br><br>\n\n<h1>Новое обновление 2.0 ▼</h1><br><br>\n\nПакет данных был обновлен таким образом, что другие характеристики, такие как урон, скорость, сила прыжка, количество блоков, на которые можно безопасно упасть, и размер, теперь уменьшаются по мере снижения роста.<br><br>\n\nРегенерация с помощью еды была убрана, и теперь доступны только неестественные способы регенерации (золотые яблоки, зелье регенерации и таинственное рагу из одуванчиков), а также новый способ — <strong>вампиризм</strong>, при котором здоровье восстанавливается на 2,5 сердца при убийстве любого моба, а игрок замедляется на 5 секунд.<br><br>\n\n<em>Информация об авторе была удалена при использовании команды /reload</em>",
+      "en": "A data pack that reduces the player's size when they take damage.<br><br>\n\nThis modification pack adds complexity to the game, increasing its dynamics and requiring the player to plan their actions more carefully. This helps to increase engagement and interest in the gameplay, as well as making the game more challenging to complete.<br><br>\n\n<h1>New Update 2.0 ▼</h1><br><br>\n\nThe data pack has been updated so that other stats, such as damage, speed, jump power, number of blocks you can safely fall on, and size, now decrease as you grow smaller.<br><br>\n\nRegeneration with food has been removed, and now only unnatural ways of regeneration are available (golden apples, regeneration potion and mysterious dandelion stew), as well as a new way - <strong>vampirism</strong>, in which health is restored by 2.5 hearts when any mob is killed, and the player is slowed down by 5 seconds.<br><br>\n\n<em>Information about the author was removed when using the command /reload</em>"
+    },
+    "features": {
+      "ru": [
+        "Гладкая анимация размера",
+        "Настраиваемые параметры",
+        "Поддержка мультиплеера",
+        "Совместимость с модами"
+      ],
+      "en": [
+        "Smooth size animation",
+        "Customizable parameters",
+        "Multiplayer support",
+        "Mod compatibility"
+      ]
+    },
     "tags": [
       "own"
     ],
     "price": {
-      "amount": 0,
+      "amount": 350,
       "currency": "RUB"
     },
+    "version": ["1.21.11"],
     "date": "2026-06-24",
-    "cover": "/assets/preview_datapack_DTM.webp",
-    "category": { "ru": "Датапак", "en": "Datapack" },
-    "link": "#"
+    "cover": "assets/preview_datapack_DTM.webp",
+    "category": {
+      "ru": "Датапак",
+      "en": "Datapack"
+    },
+    "downloadUrl": "https://cdn.modrinth.com/data/eRyi0xHH/versions/VgQtKhs8/dtm.zip?mr_download_reason=standalone&mr_game_version=1.21.11&mr_loader=datapack",
+    "link": "#",
+    "rating": 0,
+    "feedback": ""
   },
   {
     "id": "proj-1782317376855",
@@ -56,17 +103,42 @@
       "ru": "Этот пакет данных предоставляет возможности для управления нюхачами с помощью факела в качестве транспортного средства.",
       "en": "This datapack provides functionality for controlling sniffers using the torchlight as a vehicle."
     },
+    "longDescription": {
+      "ru": "<em>Пакет данных сейчас не работает</em>\n\n<h1>Sniffer в движении!</h1><br>\n\nЭтот пакет данных позволяет управлять Sniffer, используя фонарик в качестве транспортного средства.<br><br>\n\nЧтобы активировать эту функцию, выполните команду:<br><br>\n\n<h2>/trigger SniffWeapon set 1</h2><br>\n\nЭта команда позволяет дать игроку факел, который служит устройством для управления движениями нюхача. <br><br>\n\n<strong>Кроме того, если кормить его семенами факелов, он будет двигаться быстрее</strong>",
+      "en": "<em>The data pack is not working now</em>\n\n<h1>Sniffer on the move!</h1><br>\n\nThis data pack allows you to control the Sniffer using the flashlight as a vehicle.<br><br>\n\nTo activate this feature, run the command:<br><br>\n\n<h2>/trigger SniffWeapon set 1</h2><br>\n\nThis command allows you to give the player a torch, which serves as a device for controlling the sniffer's movements. <br><br>\n\n<strong>Additionally, feeding it torch seeds will make it move faster</strong>"
+    },
+    "features": {
+      "ru": [
+        "Управление нюхачами",
+        "Интуитивное управление",
+        "Красивые визуальные эффекты",
+        "Легко настраивается"
+      ],
+      "en": [
+        "Sniffer control",
+        "Intuitive controls",
+        "Beautiful visual effects",
+        "Easy to configure"
+      ]
+    },
     "tags": [
       "own"
     ],
+    "version": ["1.21.1"],
     "price": {
-      "amount": 0,
+      "amount": 200,
       "currency": "RUB"
     },
     "date": "2026-06-24",
-    "cover": "/assets/preview_datapack_RS.webp",
-    "category": { "ru": "Датапак", "en": "Datapack" },
-    "link": "#"
+    "cover": "assets/preview_datapack_RS.webp",
+    "category": {
+      "ru": "Датапак",
+      "en": "Datapack"
+    },
+    "downloadUrl": "https://cdn.modrinth.com/data/iR5e4XmH/versions/domyEy7F/RollingSniffer.zip?mr_download_reason=standalone",
+    "link": "#",
+    "rating": 4,
+    "feedback": ""
   },
   {
     "id": "proj-1782317803049",
@@ -78,21 +150,42 @@
       "ru": "Датапак был сделан под заказ клиента для пранка друзей на видео!",
       "en": "The datapack was custom-made for a client to prank their friends on video"
     },
+    "longDescription": {
+      "ru": "Специализированный датапак, созданный под заказ для забавного пранка. Включает множество веселых эффектов и механик, которые гарантировано поднимут настроение!",
+      "en": "A specialized datapack created to order for a fun prank. Includes many hilarious effects and mechanics that will definitely lift the mood!"
+    },
+    "features": {
+      "ru": [
+        "Забавные звуковые эффекты",
+        "Неожиданные события",
+        "Безопасные механики",
+        "Легко отключить"
+      ],
+      "en": [
+        "Funny sound effects",
+        "Unexpected events",
+        "Safe mechanics",
+        "Easy to disable"
+      ]
+    },
     "tags": [
-      "order","tips"
+      "order",
+      "tips"
     ],
+    "version": ["1.21.1"],
     "rating": 5,
-    "feedback": "RU Заказал датапак и уже через час получил то что хотел, правки были внесены очень быстро и всё стало так как я хотел, прекрасный сервис, очень рекомендую",
+    "feedback": "Заказал датапак и уже через час получил то что хотел, правки были внесены очень быстро и всё стало так как я хотел, прекрасный сервис, очень рекомендую",
     "price": {
       "amount": 450,
       "currency": "RUB"
     },
     "date": "2026-06-30",
-    "cover": "/assets/DFP_preview_datapack (1).webp",
+    "cover": "assets/DFP_preview_datapack (1).webp",
     "category": {
       "ru": "Датапак",
       "en": "Datapack"
     },
+    "downloadUrl": "#",
     "link": "#"
   }
 ]

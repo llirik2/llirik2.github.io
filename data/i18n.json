@@ -7,9 +7,10 @@
     "portfolio_title":"Портфолио",
     "filter_all":"Все",
     "filter_order":"Заказ",
-    "filter_own":"Собственная инициатива",
+    "filter_own":"От себя",
     "contacts_title": "Контакты",
     "status_online": "Онлайн",
+    "est-info": "прим. - Это цена за которую я бы выполнил заказ",
     "cta_button": "Связаться"
   },
   "en":{
@@ -23,6 +24,7 @@
     "filter_own":"Own Project",
     "contacts_title": "Contacts",
     "status_online": "Online",
+    "est-info": "est. - This is the price at which I would complete the order",
     "cta_button": "Contact Me"
   }
 }

@@ -57,6 +57,9 @@
     checkOnlineStatus();
     
     if(window.Portfolio && window.Portfolio.render) window.Portfolio.render(lang);
+    
+    // Обновляем язык модального окна
+    if(window.ProjectModal && window.ProjectModal.setLang) window.ProjectModal.setLang(lang);
   }
 
   function setYear(){
@@ -173,111 +176,63 @@ function setupContactButton() {
     setInterval(checkOnlineStatus, 30000);
 
     if(window.Portfolio && window.Portfolio.init) window.Portfolio.init(lang);
+    if(window.ProjectDetail && window.ProjectDetail.setLang) window.ProjectDetail.setLang(lang);
     if(window.ThreeBG && window.ThreeBG.init) window.ThreeBG.init();
     if(window.ScrollAnim && window.ScrollAnim.init) window.ScrollAnim.init();
   }
 
-  /*
-  // Инициализация холста светлячков
-  const canvas = document.getElementById('bgSV-canvas');
-  
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const mouse = { x: null, y: null };
+  (function() {
+      const canvas = document.getElementById('matrix-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    
-    window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', (e) => { 
-      mouse.x = e.clientX; 
-      mouse.y = e.clientY; 
-    });
-    window.addEventListener('mouseleave', () => { 
-      mouse.x = null; 
-      mouse.y = null; 
-    });
-
-    class Particle {
-      constructor() {
-        this.reset();
-        // Рандомно распределяем частицы по высоте при старте, чтобы они не летели все снизу одновременно
-        this.y = Math.random() * canvas.height;
+      function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
       }
-      
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = canvas.height + 10;
-        this.size = Math.random() * 2 + 1;
-        this.speedY = Math.random() * 0.4 + 0.1;
-        this.alpha = Math.random() * 0.4 + 0.1;
-      }
-      
-      update() {
-        if (mouse.x !== null && mouse.y !== null) {
-          // Рассчитываем расстояние до курсора мыши
-          const dx = mouse.x - this.x;
-          const dy = mouse.y - this.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
 
-          // Если светлячок подлетел слишком близко (ближе 80px), он плавно облетает мышь вверх
-          if (distance < 80) {
-            this.y -= this.speedY * 1.5;
-            this.x += (Math.random() - 0.5) * 0.5; // Легкое пиксельное покачивание в стороны
-          } else {
-            // Если далеко — плавно притягивается по красивой дуге
-            this.x += dx * 0.015;
-            this.y += dy * 0.015;
+      const magicChars = "ᔑʖᓵ╎ꖎᒲ⊣ℸ̣cup⎓ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛜᛝᛟ".split("");
+      const fontSize = 14; 
+      const columnSpacing = 32; // Хорошее расстояние, чтобы фон оставался просторным
+      const columns = Math.floor(canvas.width / columnSpacing);
+
+      const rainDrops = [];
+      for (let x = 0; x < columns; x++) {
+          rainDrops[x] = Math.random() * -150;
+      }
+
+      function drawMatrix() {
+          // Очищаем именно 2D-холст рун с эффектом затухания
+          ctx.fillStyle = 'rgba(10, 10, 10, 0.1)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.font = fontSize + 'px Minecraftia, monospace';
+
+          for (let i = 0; i < rainDrops.length; i++) {
+              const char = magicChars[Math.floor(Math.random() * magicChars.length)];
+              const xPosition = i * columnSpacing;
+              const yPosition = rainDrops[i] * fontSize;
+
+              // Делаем руны очень блёклыми (8% видимости), чтобы они не спорили с текстом
+              if (Math.random() > 0.988) {
+                  ctx.fillStyle = 'rgba(255, 255, 255, 0.6)'; // Редкие тусклые белые вспышки
+              } else {
+                  ctx.fillStyle = 'rgba(0, 255, 102, 0.48)'; // Едва заметный неоново-зеленый
+              }
+
+              ctx.fillText(char, xPosition, yPosition);
+
+              if (yPosition > canvas.height && Math.random() > 0.993) {
+                  rainDrops[i] = Math.random() * -20;
+              }
+              rainDrops[i] += 0.35; // Медленное, атмосферное падение
           }
-        } else {
-          // Обычный ленивый полет вверх, если мышка ушла с экрана
-          this.y -= this.speedY;
-        }
-
-        // Если светлячок вылетел за любую из границ экрана — сбрасываем его вниз
-        if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
-          this.reset();
-        }
       }
-      
-      draw() {
-        ctx.fillStyle = `rgba(0, 255, 136, ${this.alpha})`;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = '#00ff88';
-        ctx.fillRect(this.x, this.y, this.size, this.size);
-      }
-    }
 
-    function init() {
-      resize();
-      particles = [];
-      for (let i = 0; i < 25; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function animate() {
-      // Очищаем строго буфер холста
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Сбрасываем тень контекста, чтобы она случайно не размывала другие элементы сайта
-      ctx.shadowBlur = 0; 
-      
-      particles.forEach(p => { 
-        p.update(); 
-        p.draw(); 
-      });
-      
-      requestAnimationFrame(animate);
-    }
-    
-    init();
-    animate();
-  }
-*/
+      setInterval(drawMatrix, 40);
+  })();
 
   document.addEventListener('DOMContentLoaded', init);
 })();
